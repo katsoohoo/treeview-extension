@@ -10,7 +10,7 @@ export function activate(context: ExtensionContext) {
   let disposable = commands.registerCommand(
     "treeview-extension.deleteItem",
     async () => {
-      // Workaround for bug
+      // Workaround for bug when selecting and deleting last child node
       // await treeView.reveal(treeViewProvider.parent, {
       //   focus: true
       // });

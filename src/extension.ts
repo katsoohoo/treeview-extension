@@ -11,10 +11,9 @@ export function activate(context: ExtensionContext) {
     "treeview-extension.deleteItem",
     async () => {
       // Workaround for bug
-      await treeView.reveal(treeViewProvider.parent, {
-        select: true,
-        focus: true,
-      });
+      // await treeView.reveal(treeViewProvider.parent, {
+      //   focus: true
+      // });
       treeViewProvider.deleteItem();
     }
   );

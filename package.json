@@ -1,6 +1,6 @@
 {
-	"name": "myextension",
-	"displayName": "MyExtension",
+	"name": "treeview-extension",
+	"displayName": "treeview-extension",
 	"description": "A test extension to recreate Tree View API issue.",
 	"version": "0.0.1",
 	"engines": {
@@ -16,14 +16,14 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "myextension.deleteItem",
+				"command": "treeview-extension.deleteItem",
 				"title": "My Extension: Delete Item"
 			}
 		],
 		"views": {
 			"explorer": [
 				{
-					"id": "myTreeDataProvider",
+					"id": "myTreeView",
 					"name": "My Tree View"
 				}
 			]

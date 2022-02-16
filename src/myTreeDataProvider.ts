@@ -10,7 +10,8 @@ import {
 class MyTreeItem extends TreeItem {
   public constructor(
     label: string,
-    collapsibleState: TreeItemCollapsibleState
+    collapsibleState: TreeItemCollapsibleState,
+    public parent: MyTreeItem | null
   ) {
     super(label, collapsibleState);
   }
@@ -23,23 +24,36 @@ export class MyTreeDataProvider implements TreeDataProvider<MyTreeItem> {
   readonly onDidChangeTreeData: Event<MyTreeItem | undefined | null | void> =
     this.onDidChangeTreeDataEmitter.event;
 
-  private parent: TreeItem;
-  private children: TreeItem[] = [];
+  public parent: MyTreeItem;
+  private children: MyTreeItem[] = [];
 
   constructor() {
-    this.parent = new MyTreeItem("outer", TreeItemCollapsibleState.Collapsed);
-    this.children.push(new MyTreeItem("inner", TreeItemCollapsibleState.None));
+    this.parent = new MyTreeItem(
+      "outer",
+      TreeItemCollapsibleState.Collapsed,
+      null
+    );
+    this.children.push(
+      new MyTreeItem("inner", TreeItemCollapsibleState.None, this.parent)
+    );
   }
 
+  /** @override */
   getTreeItem(element: MyTreeItem): TreeItem | Thenable<TreeItem> {
     return element;
   }
 
+  /** @override */
   getChildren(element?: MyTreeItem): ProviderResult<MyTreeItem[]> {
     if (element) {
       return this.children;
     }
     return [this.parent];
+  }
+
+  /** @override */
+  getParent(element?: MyTreeItem): ProviderResult<MyTreeItem> {
+    return element?.parent;
   }
 
   refreshParent() {

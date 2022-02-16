@@ -1,4 +1,4 @@
-# myextension README
+# treeview-extension README
 
 1. Open project in VS Code.
 1. Install dependencies with `npm ci`
